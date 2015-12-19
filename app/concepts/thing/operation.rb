@@ -3,6 +3,5 @@ class Thing < ActiveRecord::Base
     def process(params)
       @model = Thing.create(params[:thing])
     end
-
   end
 end
