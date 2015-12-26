@@ -10,6 +10,7 @@ Minitest::Reporters.use!
 
 Rails.backtrace_cleaner.remove_silencers!
 
+
 Minitest::Spec.class_eval do
   after :each do
     # DatabaseCleaner.clean
@@ -23,6 +24,7 @@ Cell::TestCase.class_eval do
   include Capybara::DSL
   include Capybara::Assertions
 end
+
 
 Trailblazer::Test::Integration.class_eval do
   def sign_in!(email="fred@trb.org", password="123456")
