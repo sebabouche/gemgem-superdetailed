@@ -1,5 +1,7 @@
-%h3
-  Welcome to Gemgem!
+.row
+  %h3
+    Welcome to Gemgem!
 
 .row
-  = concept("thing/cell", collection: Thing.latest)
+  - things = Thing.latest
+  = concept("thing/cell", collection: things, last: things.last)

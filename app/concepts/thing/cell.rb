@@ -18,4 +18,10 @@ class Thing::Cell < Cell::Concept
   def created_at
     timeago_tag(super)
   end
+
+  def classes
+    classes = ["box", "large-3", "columns"]
+    classes << "end" if options[:last] == model
+    classes
+  end
 end
