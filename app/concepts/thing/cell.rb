@@ -17,6 +17,5 @@ class Thing::Cell < Cell::Concept
   
   def created_at
     timeago_tag(super)
-    #model.created_at
   end
 end
