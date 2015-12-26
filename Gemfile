@@ -54,21 +54,27 @@ group :production do
 end
 
 # stable versions will be released soon.
-gem "reform",      github: "apotonick/reform"
-gem "trailblazer", github: "apotonick/trailblazer"
-gem "representable", "2.4.0"
+gem "trailblazer",       "1.1.0"
+gem "trailblazer-rails", ">= 0.2.3"
+gem "representable",     "3.0.0"
+gem "reform",            "2.1.0"
+
 gem "virtus"
-gem "disposable", ">= 0.2.1"
+
 gem "tyrant", "0.0.3"
-gem "trailblazer-rails", ">= 0.2.1"
+
 gem "cells", "4.0.3"
 gem "cells-haml", "0.0.8"
 gem "haml", github: "haml/haml", ref: "7c7c169"
 gem "kaminari-cells"
+
 gem "paperdragon", ">= 0.0.10"
 gem "file_validators", "~> 1.2"
 gem "roar", github: "apotonick/roar"
+
 gem "pundit"
+
 gem "rails-timeago"
 gem "email_validator"
+
 gem "foundation-icons-sass-rails"
