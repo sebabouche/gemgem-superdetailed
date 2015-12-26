@@ -15,6 +15,6 @@
 //= require foundation
 //= require turbolinks
 //= require_tree .
-//= require rails_timeago
+//= require rails-timeago
 
 $(function(){ $(document).foundation(); });
