@@ -2,10 +2,8 @@ require 'test_helper'
 
 class HomeIntegrationTest < Trailblazer::Test::Integration
   it do
-    Thing.delete_all
-
-    Thing::Create.(thing: { name: "Trailblazer" })
-    Thing::Create.(thing: { name: "Descendents" })
+    Thing::Create.(thing: {name: "Trailblazer"})
+    Thing::Create.(thing: {name: "Descendents"})
 
     visit "/"
 
