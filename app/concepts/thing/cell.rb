@@ -12,7 +12,7 @@ class Thing::Cell < Cell::Concept
   private
   
   def name_link
-    link_to model.name, thing_path(model)
+    link_to name, thing_path(model)
   end
   
   def created_at
