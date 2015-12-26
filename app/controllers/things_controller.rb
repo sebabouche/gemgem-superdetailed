@@ -18,4 +18,17 @@ class ThingsController < ApplicationController
 
     render action: :new
   end
+
+  def update
+    run Thing::Update do |op|
+      return redirect_to op.model
+    end
+
+    render action: :edit
+  end
+
+  def show
+    present Thing::Update
+  end
+
 end
