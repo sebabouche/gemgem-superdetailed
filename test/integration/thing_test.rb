@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class ThingIntegrationTest < Trailblazer::Test::Integration
   it "allows anonymous" do
 
