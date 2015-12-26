@@ -2,13 +2,11 @@ require 'test_helper'
 
 class HomeIntegrationTest < Trailblazer::Test::Integration
   it do
-    Thing::Create.(thing: {name: "Trailblazer"})
-    Thing::Create.(thing: {name: "Descendents"})
+    Thing::Create.(thing: {name: "Rails"})
 
     visit "/"
 
-    page.must_have_css ".columns .header a", text: "Descendents"
-    page.must_have_css ".columns.end .header a", text: "Trailblazer"
+    page.must_have_css ".columns .header a", text: "Rails"
   end
 end
 
