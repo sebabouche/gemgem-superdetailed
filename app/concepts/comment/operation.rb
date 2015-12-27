@@ -12,7 +12,8 @@ class Comment < ActiveRecord::Base
       validates :weight, inclusion: { in: ["0", "1"] }
       validates :thing, :user, presence: true
 
-      property :user, prepopulator: ->(*) { self.user = User.new } do
+      property :user, prepopulator: ->(*) { self.user = User.new },
+                      populate_if_empty: ->(*) { User.new }  do
         property :email
         validates :email, presence: true, email: true
       end
