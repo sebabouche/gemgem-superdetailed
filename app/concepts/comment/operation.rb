@@ -4,6 +4,14 @@ class Comment < ActiveRecord::Base
     model Comment, :create
 
     contract do
+      def self.weights
+        { "0" => "Nice!", "1" => "Rubbish!" }
+      end
+
+      def weights
+        [self.class.weights.to_a, :first, :last]
+      end
+
       property :body
       property :weight
       property :thing
@@ -11,6 +19,7 @@ class Comment < ActiveRecord::Base
       validates :body, length: { in: 6..160 }
       validates :weight, inclusion: { in: ["0", "1"] }
       validates :thing, :user, presence: true
+      validates :weight, inclusion: { in: self.weights.keys }
 
       property :user do
         property :email
