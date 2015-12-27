@@ -34,4 +34,14 @@ class ThingsController < ApplicationController
     form Comment::Create
   end
 
+  def create_comment
+    @thing_op = present Thing::Update
+    @thing = @thing_op.model
+
+    run Comment::Create, params: params.merge(thing_id: params[:id])
+
+    render :show
+  end
+
+
 end
