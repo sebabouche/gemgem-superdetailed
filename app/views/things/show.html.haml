@@ -1,6 +1,15 @@
 .header
   %h1
-    #{@model.name}
-    = link_to "Edit", edit_thing_path(@model)
+    #{@thing.name}
+    = link_to "Edit", edit_thing_path(@thing)
 
-#{@model.description}
+#{@thing.description}
+
+= simple_form_for @form, url: create_comment_thing_path(@thing) do |f|
+  = f.input :body
+  = f.collection_radio_buttons :weight, *@form.weights
+
+  = f.simple_fields_for :user do |u|
+    = u.input :email
+
+  = f.button :submit

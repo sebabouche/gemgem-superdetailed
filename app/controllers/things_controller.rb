@@ -28,7 +28,10 @@ class ThingsController < ApplicationController
   end
 
   def show
-    present Thing::Update
+    @thing_op = present Thing::Update
+    @thing = @thing_op.model
+
+    form Comment::Create
   end
 
 end
