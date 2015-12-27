@@ -12,8 +12,7 @@ class Comment < ActiveRecord::Base
       validates :weight, inclusion: { in: ["0", "1"] }
       validates :thing, :user, presence: true
 
-      property :user, prepopulator: ->(*) { self.user = User.new },
-                      populate_if_empty: ->(*) { User.new }  do
+      property :user do
         property :email
         validates :email, presence: true, email: true
       end
@@ -33,6 +32,7 @@ class Comment < ActiveRecord::Base
 
     def setup_model!(params)
       model.thing = Thing.find_by_id(params[:thing_id])
+      model.build_user
     end
   end
 end
