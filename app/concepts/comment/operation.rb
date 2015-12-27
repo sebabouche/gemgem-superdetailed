@@ -25,6 +25,10 @@ class Comment < ActiveRecord::Base
       end
     end
 
+    def thing
+      model.thing
+    end
+
     private
 
     def setup_model!(params)
