@@ -11,5 +11,8 @@ class Comment < ActiveRecord::Base
 
     private
 
+    def setup_model!(params)
+      model.thing = Thing.find_by_id(params[:thing_id])
+    end
   end
 end
