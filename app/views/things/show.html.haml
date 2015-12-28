@@ -23,4 +23,4 @@
 
 %h3 #{@thing.comments.size} comments
 
-= concept "comment/cell", collection: @thing.comments
+= concept "comment/cell", collection: @thing.comments, last: Comment.last
