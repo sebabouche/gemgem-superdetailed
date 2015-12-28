@@ -9,4 +9,10 @@ class Comment::Cell < Cell::Concept
   def show
     render
   end
+
+  private
+
+  def nice?
+    model.weight == 0
+  end
 end
