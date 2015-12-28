@@ -1,6 +1,4 @@
 class Thing::Cell < Cell::Concept
-  include ActionView::Helpers::DateHelper
-  include Rails::Timeago::Helper
 
   property :name
   property :created_at
@@ -9,16 +7,14 @@ class Thing::Cell < Cell::Concept
     render
   end
   
+  include Gemgem::Cell::CreatedAt
+
   private
   
   def name_link
     link_to name, thing_path(model)
   end
   
-  def created_at
-    timeago_tag(super)
-  end
-
   def classes
     classes = ["box", "large-3", "columns"]
     classes << "end" if options[:last] == model

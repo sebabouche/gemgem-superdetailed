@@ -6,6 +6,8 @@ class Comment::Cell < Cell::Concept
   include Gemgem::Cell::GridCell
   self.classes = ["comment", "large-4", "columns"]
 
+  include Gemgem::Cell::CreatedAt
+
   def show
     render
   end
