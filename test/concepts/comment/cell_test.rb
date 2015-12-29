@@ -43,4 +43,12 @@ class CommentCellTest < Cell::TestCase
     # "More!"
     html.find("#next a")["href"].must_equal "/things/#{thing.id}/next_comments?page=2"
   end
+
+  # pagination
+  it do
+    html = concept("comment/cell/grid", thing, page: 2).(:append)
+
+    html.to_s.must_match /replaceWith/
+    html.to_s.must_match /zavan@trb.org/
+  end
 end
