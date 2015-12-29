@@ -7,7 +7,8 @@ class Thing < ActiveRecord::Base
       property :name
       property :description
 
-      collection :users do
+      collection :users, 
+        prepopulator: :prepopulate_users! do
         property :email
         validates :email, presence: true, email: true
 
@@ -15,6 +16,12 @@ class Thing < ActiveRecord::Base
 
       validates :name, presence: true
       validates :description, length: {in: 4..160}, allow_blank: true
+
+      private
+
+      def prepopulate_users!(options)
+        (3 - users.size).times { users << User.new }
+      end
 
     end
 
