@@ -19,10 +19,12 @@ class Comment::Cell < Cell::Concept
   end
   
   class Grid < Cell::Concept
+    inherit_views Comment::Cell
+    
     include Kaminari::Cells
 
     def show
-      concept("comment/cell", collection: comments) + paginate(comments)
+      render :grid
     end
 
     private
