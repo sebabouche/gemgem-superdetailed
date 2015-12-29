@@ -7,8 +7,15 @@ class Thing < ActiveRecord::Base
       property :name
       property :description
 
+      collection :users do
+        property :email
+        validates :email, presence: true, email: true
+
+      end
+
       validates :name, presence: true
       validates :description, length: {in: 4..160}, allow_blank: true
+
     end
 
     def process(params)

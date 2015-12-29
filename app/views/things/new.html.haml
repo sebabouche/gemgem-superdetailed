@@ -6,6 +6,9 @@
   = f.input :description, placeholder: "Description", label: false
   = f.input :file, as: :file
 
-  = f.button :submit, class: :expand
+  %fieldset
+    %legend Do you know any authors?
+    = f.simple_fields_for :users do |u|
+      = u.input :email, placeholder: "Email", label: false
 
-= @form.errors.messages
+  = f.button :submit, class: :expand
