@@ -11,11 +11,11 @@
   
   %h3 What do you think?
 
-  = f.input :body
+  = f.input :body, placeholder: "Your comment", label: false
   = f.collection_radio_buttons :weight, *@form.weights
 
   = f.simple_fields_for :user do |u|
-    = u.input :email
+    = u.input :email, placeholder: "Your email", label: false
 
   = f.button :submit
 

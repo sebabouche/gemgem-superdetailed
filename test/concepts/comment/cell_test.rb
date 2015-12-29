@@ -14,7 +14,6 @@ class CommentCellTest < Cell::TestCase
 
   it do
     html = concept("comment/cell/grid", thing).(:show)
-    puts html
 
     comments = html.all(:css, ".comment")
     comments.size.must_equal 3
