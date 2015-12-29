@@ -27,10 +27,10 @@ class CommentIntegrationTest < Trailblazer::Test::Integration
 
   describe "#next_comments" do
     it do
-      skip "problem with Capybara::Ambiguous: Ambiguous match, found 2 elements matching xpath \"/html\""
+      # skip "problem with Capybara::Ambiguous: Ambiguous match, found 2 elements matching xpath \"/html\""
       visit "/things/#{thing.id}"
       click_link "More"
-      page.must_have_content "zavan@trb.org"
+      find("body").must_have_content "zavan@trb.org"
     end
   end
 end
