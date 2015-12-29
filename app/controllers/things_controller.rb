@@ -38,7 +38,10 @@ class ThingsController < ApplicationController
     @thing_op = present Thing::Update
     @thing = @thing_op.model
 
-    run Comment::Create, params: params.merge(thing_id: params[:id])
+    run Comment::Create, params: params.merge(thing_id: params[:id]) do |op|
+      flash[:notice] = "Created comment for \"#{op.thing.name}\""
+      return redirect_to thing_path(op.thing)
+    end
 
     render :show
   end
