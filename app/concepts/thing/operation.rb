@@ -8,7 +8,8 @@ class Thing < ActiveRecord::Base
       property :description
 
       collection :users, 
-        prepopulator: :prepopulate_users! do
+        prepopulator: :prepopulate_users!,
+        populate_if_empty: :populate_users! do
         property :email
         validates :email, presence: true, email: true
 
@@ -23,6 +24,9 @@ class Thing < ActiveRecord::Base
         (3 - users.size).times { users << User.new }
       end
 
+      def populate_users!(fragment:, **)
+        User.find_by(email: fragment["email"]) or User.new
+      end
     end
 
     def process(params)
