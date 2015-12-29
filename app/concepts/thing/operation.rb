@@ -9,7 +9,8 @@ class Thing < ActiveRecord::Base
 
       collection :users, 
         prepopulator: :prepopulate_users!,
-        populate_if_empty: :populate_users! do
+        populate_if_empty: :populate_users!,
+        skip_if: :all_blank do
         property :email
         validates :email, presence: true, email: true
 
