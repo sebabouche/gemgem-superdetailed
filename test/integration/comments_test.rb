@@ -24,4 +24,13 @@ class CommentIntegrationTest < Trailblazer::Test::Integration
       page.must_have_css ".alert-box", text: "Created comment for \"Rails\"" 
     end
   end
+
+  describe "#next_comments" do
+    it do
+      skip "problem with Capybara::Ambiguous: Ambiguous match, found 2 elements matching xpath \"/html\""
+      visit "/things/#{thing.id}"
+      click_link "More"
+      page.must_have_content "zavan@trb.org"
+    end
+  end
 end
