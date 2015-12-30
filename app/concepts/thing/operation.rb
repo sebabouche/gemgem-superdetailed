@@ -7,17 +7,26 @@ class Thing < ActiveRecord::Base
       property :name
       property :description
 
-      collection :users, 
-        prepopulator: :prepopulate_users!,
-        populate_if_empty: :populate_users!,
-        skip_if: :all_blank do
-        property :email
-        validates :email, presence: true, email: true
-
-      end
-
       validates :name, presence: true
       validates :description, length: {in: 4..160}, allow_blank: true
+
+      collection :users, 
+      prepopulator: :prepopulate_users!,
+      populate_if_empty: :populate_users!,
+      skip_if: :all_blank do
+
+        property :email
+        validates :email, presence: true, email: true
+        validate :authorship_limit_reached?
+
+        private
+
+        def authorship_limit_reached?
+          return if model.authorships.find_all { |au| au.confirmed == 0 }.size < 5
+          errors.add("user", "This user has too many unconfirmed authorships.")
+        end
+      end
+      validates :users, length: {maximum: 3}
 
       private
 
