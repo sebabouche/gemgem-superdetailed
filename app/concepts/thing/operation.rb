@@ -33,7 +33,14 @@ class Thing < ActiveRecord::Base
     def process(params)
       validate(params[:thing]) do |f|
         f.save
+        reset_authorships!
       end
+    end
+
+    private
+
+    def reset_authorships!
+      model.authorships.each { |au| au.update(confirmed: 0) }
     end
   end
   
