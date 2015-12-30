@@ -60,6 +60,8 @@ class Thing < ActiveRecord::Base
       property :name, writeable: false
 
       collection :users, inherit: true do
+        property :remove, virtual: true
+
         def removeable?
           model.persisted?
         end
