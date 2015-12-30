@@ -12,9 +12,9 @@
       - if @operation.instance_of? Thing::Create
         = u.input :email, placeholder: "Email", label: false
       - else
-        = u.input :email, placeholder: "Email", label: false, readonly: u.object.removable?
+        = u.input :email, placeholder: "Email", label: false, readonly: u.object.removeable?
 
-        - if u.object.removable?
+        - if u.object.removeable?
           = u.input :remove, as: :boolean, input_html: { checked: false }
 
   = f.button :submit, class: :expand

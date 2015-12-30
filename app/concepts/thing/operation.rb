@@ -58,6 +58,12 @@ class Thing < ActiveRecord::Base
 
     contract do
       property :name, writeable: false
+
+      collection :users, inherit: true do
+        def removeable?
+          model.persisted?
+        end
+      end
     end
   end
 end
