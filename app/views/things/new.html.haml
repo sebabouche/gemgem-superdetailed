@@ -9,7 +9,13 @@
   %fieldset
     %legend Do you know any authors?
     = f.simple_fields_for :users do |u|
-      = u.input :email, placeholder: "Email", label: false
+      - if @operation.instance_of? Thing::Create
+        = u.input :email, placeholder: "Email", label: false
+      - else
+        = u.input :email, placeholder: "Email", label: false, readonly: u.object.removable?
+
+        - if u.object.removable?
+          = u.input :remove, as: :boolean, input_html: { checked: false }
 
   = f.button :submit, class: :expand
 
