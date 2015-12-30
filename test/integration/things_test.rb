@@ -6,12 +6,19 @@ class ThingIntegrationTest < Trailblazer::Test::Integration
     # new
     visit "/things/new"
 
+    # every field editable
     page.must_have_css "form #thing_name"
     page.wont_have_css "form #thing_name.readonly"
+
+    # 3 author email fields
+    page.must_have_css("input.email", count: 3) # TODO: how can i say "no value"?
    
     # invalid.
     click_button "Create Thing"
     page.must_have_css ".error"
+
+    # 3 author email fields
+    page.must_have_css "input.email", count: 3 # FIXME I don't see 3 author fields !
 
     # correct submit.
     fill_in 'Name', with: "Bad Religion"
