@@ -21,7 +21,7 @@ module Thing::Contract
 
       def authorship_limit_reached?
         return if model.authorships.find_all { |au| au.confirmed == 0 }.size < 5
-        errors.add("base", "This user has too many unconfirmed authorships.")
+        errors.add("user", "This user has too many unconfirmed authorships.")
       end
     end
     validates :users, length: {maximum: 3}
