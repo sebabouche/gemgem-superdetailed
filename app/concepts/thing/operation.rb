@@ -21,5 +21,7 @@ class Thing < ActiveRecord::Base
   
   class Update < Create
     action :update
+
+    contract Contract::Update
   end
 end
