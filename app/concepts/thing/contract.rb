@@ -59,7 +59,7 @@ module Thing::Contract
       end
 
       # skip if already existing
-      return Representable::Pipeline::Stop if users[:index]
+      return Representable::Pipeline::Stop if users[index]
 
       users.insert(index, User.new)
     end
