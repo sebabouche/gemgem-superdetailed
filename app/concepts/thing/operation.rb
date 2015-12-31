@@ -59,12 +59,25 @@ class Thing < ActiveRecord::Base
     contract do
       property :name, writeable: false
 
-      collection :users, inherit: true do
+      collection :users, inherit: true, populator: :user! do
         property :remove, virtual: true
 
         def removeable?
           model.persisted?
         end
+      end
+
+      private
+
+      def user!(fragment:, index:, **)
+        if fragment["remove"] == "1"
+          deserialized_user = users.find { |u| u.id.to_s == fragment[:id] }
+          users.delete(deserialized_user)
+          return skip!
+        end
+
+        return skip! if users[:index]
+        users.insert(index, User.new)
       end
     end
   end
