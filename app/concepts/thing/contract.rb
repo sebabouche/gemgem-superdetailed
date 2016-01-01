@@ -1,6 +1,7 @@
 module Thing::Contract
   class Create < Reform::Form
     model Thing
+    feature Disposable::Twin::Persisted
     
     property :name
     property :description
