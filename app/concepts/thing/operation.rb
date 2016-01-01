@@ -9,6 +9,7 @@ class Thing < ActiveRecord::Base
       validate(params[:thing]) do |f|
         f.save
         reset_authorships!
+        notify_authors!
       end
     end
 
@@ -16,6 +17,13 @@ class Thing < ActiveRecord::Base
 
     def reset_authorships!
       model.authorships.each { |au| au.update(confirmed: 0) }
+    end
+
+    def notify_authors!
+      # call a MailerJob or mandrill API
+      # model.users.collect do |user|
+      #  UserMailer.welcome_email(user)
+      # end
     end
   end
   
