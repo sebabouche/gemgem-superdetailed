@@ -8,22 +8,28 @@ class Thing < ActiveRecord::Base
     def process(params)
       validate(params[:thing]) do |f|
         f.save
-        reset_authorships!
         notify_authors!
+        reset_authorships!
       end
     end
 
     private
 
-    def reset_authorships!
-      model.authorships.each { |au| au.update(confirmed: 0) }
-    end
-
     def notify_authors!
       # call a MailerJob or mandrill API
-      # model.users.collect do |user|
-      #  UserMailer.welcome_email(user)
-      # end
+      contract.users.collect do |user|
+        if user.created?
+          return
+          # UserMailer.welcome(user)
+        else
+          return
+          # UserMailer.new_thing(user)
+        end
+      end
+    end
+
+    def reset_authorships!
+      model.authorships.each { |au| au.update(confirmed: 0) }
     end
   end
   
