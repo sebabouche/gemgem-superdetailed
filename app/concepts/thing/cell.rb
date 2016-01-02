@@ -1,4 +1,5 @@
 class Thing::Cell < Cell::Concept
+  include Cell::Caching::Notifications
   cache :show do
     [model.id, model.updated_at]
   end
