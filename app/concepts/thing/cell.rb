@@ -23,7 +23,8 @@ class Thing::Cell < Cell::Concept
   class Grid < Cell::Concept
     include Cell::Caching::Notifications
     cache :show do
-      Thing.latest.last.id
+      # Thing.latest.last.id
+      CacheVersion.for("thing/cell/grid")
     end
 
     def show

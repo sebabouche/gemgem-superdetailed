@@ -5,6 +5,8 @@ module Thing::Callback
       on_add :reset_authorship!
     end
 
+    on_change :expire_cache!
+
     def notify_author!(user, *)
       # commented because mailer doesn't exist
       # return UserMailer.welcome_and_added(user, model) if user.created?
@@ -14,6 +16,10 @@ module Thing::Callback
 
     def reset_authorship!(user, operation:, **)
       user.model.authorships.find_by(thing_id: operation.model.id).update(confirmed: 0)
+    end
+
+    def expire_cache!(thing, *)
+      CacheVersion.for("thing/cell/grid").expire!
     end
   end
 end
