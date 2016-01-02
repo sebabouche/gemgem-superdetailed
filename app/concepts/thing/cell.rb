@@ -1,5 +1,7 @@
 class Thing::Cell < Cell::Concept
-  cache :show
+  cache :show do
+    [model.id, model.updated_at]
+  end
 
   property :name
   property :created_at
