@@ -29,7 +29,10 @@ class Thing < ActiveRecord::Base
     end
 
     def reset_authorships!
-      model.authorships.each { |au| au.update(confirmed: 0) }
+      contract.users.each do |user|
+        next unless contract.users.added.include?(user)
+        model.authorships.each { |au| au.update(confirmed: 0) }
+      end
     end
   end
   
