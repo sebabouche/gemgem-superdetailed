@@ -3,13 +3,19 @@ class Thing < ActiveRecord::Base
     include Model
     model Thing, :create
 
+    callback do
+      collection :users do
+        on_add :notify_authors!
+        on_add :reset_authorship!
+      end
+    end
+
     contract Contract::Create
     
     def process(params)
       validate(params[:thing]) do |f|
         f.save
-        notify_authors!
-        reset_authorships!
+        dispatch!
       end
     end
 
