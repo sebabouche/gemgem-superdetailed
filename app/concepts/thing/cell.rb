@@ -1,4 +1,5 @@
 class Thing::Cell < Cell::Concept
+  cache :show
 
   property :name
   property :created_at
