@@ -3,15 +3,11 @@ class Thing < ActiveRecord::Base
     include Model
     model Thing, :create
 
-    callback do
-      collection :users do
-        on_add :notify_author!
-        on_add :reset_authorship!
-      end
-    end
-
     contract Contract::Create
     
+    include Dispatch
+    callback :default, Callback::Default
+
     def process(params)
       validate(params[:thing]) do |f|
         f.save
@@ -19,19 +15,13 @@ class Thing < ActiveRecord::Base
       end
     end
 
-    private
-
-    def notify_author!(user, options)
-      # commented because mailer doesn't exist
-      # return UserMailer.welcome_and_added(user, model) if user.created?
-      # UserMailer.thing_added(user, model)
+  private
+    def reset_authorships!
+      model.authorships.each { |authorship| authorship.update_attribute(:confirmed, 0) }
     end
-
-    def reset_authorship!(user, options)
-      user.model.authorships.find_by(thing_id: model.id).update(confirmed: 0)
-    end
+    
   end
-  
+
   class Update < Create
     action :update
 
