@@ -5,7 +5,7 @@ class Thing < ActiveRecord::Base
 
     callback do
       collection :users do
-        on_add :notify_authors!
+        on_add :notify_author!
         on_add :reset_authorship!
       end
     end
@@ -21,24 +21,14 @@ class Thing < ActiveRecord::Base
 
     private
 
-    def notify_authors!
-      # call a MailerJob or mandrill API
-      contract.users.collect do |user|
-        if user.created?
-          return
-          # UserMailer.welcome(user)
-        else
-          return
-          # UserMailer.new_thing(user)
-        end
-      end
+    def notify_author!(user, options)
+      # commented because mailer doesn't exist
+      # return UserMailer.welcome_and_added(user, model) if user.created?
+      # UserMailer.thing_added(user, model)
     end
 
-    def reset_authorships!
-      contract.users.each do |user|
-        next unless contract.users.added.include?(user)
-        model.authorships.each { |au| au.update(confirmed: 0) }
-      end
+    def reset_authorship!(user, options)
+      user.model.authorships.find_by(thing_id: model.id).update(confirmed: 0)
     end
   end
   
