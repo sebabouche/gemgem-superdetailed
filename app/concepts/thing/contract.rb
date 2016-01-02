@@ -5,6 +5,7 @@ module Thing::Contract
     
     property :name
     property :description
+    property :file, virtual: true
 
     validates :name, presence: true
     validates :description, length: {in: 4..160}, allow_blank: true
