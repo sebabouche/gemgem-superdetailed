@@ -15,7 +15,7 @@ module Session
 
       def password_ok?
         return unless email and password
-        return if contract.password == contract.confirm_password
+        return if password == confirm_password
         errors.add("password", "Password don't match")
       end
     end
@@ -27,7 +27,7 @@ module Session
       end
     end
 
-    def create!(f)
+    def create!
       auth = Tyrant::Authenticatable.new(contract.model)
       auth.digest!(contract.password)
       auth.confirmed!
