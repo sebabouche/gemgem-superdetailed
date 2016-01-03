@@ -21,9 +21,15 @@ class Comment < ActiveRecord::Base
       validates :thing, :user, presence: true
       validates :weight, inclusion: { in: self.weights.keys }
 
-      property :user do
+      property :user, 
+      prepopulator: -> (*) { self.user = User.new }, 
+      populator: :populate_user! do
         property :email
         validates :email, presence: true, email: true
+      end
+
+      def populate_user!(fragment:, **)
+        self.user = (User.find_by(email: fragment["email"]) or User.new)
       end
     end
 
@@ -41,7 +47,6 @@ class Comment < ActiveRecord::Base
 
     def setup_model!(params)
       model.thing = Thing.find_by_id(params[:thing_id])
-      model.build_user
     end
   end
 end
