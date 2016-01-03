@@ -1,0 +1,7 @@
+# Logfile created on 2016-01-03 01:09:49 +0100 by logger.rb/47272
+D, [2016-01-03T01:09:49.301153 #5790] DEBUG -- : DRAGONFLY: shell command: 'identify' '-ping' '-format' '%m %w %h' '/var/folders/dr/0yjch_bx0kjdlvx7fhnrzn700000gn/T/RackMultipart20160103-5790-1ssaaws.JPG'
+D, [2016-01-03T01:09:49.361401 #5790] DEBUG -- : DRAGONFLY: shell command: 'convert' '/var/folders/dr/0yjch_bx0kjdlvx7fhnrzn700000gn/T/RackMultipart20160103-5790-1ssaaws.JPG' '-resize' '120x120^^' '-gravity' 'Center' '-crop' '120x120+0+0' '+repage' '/var/folders/dr/0yjch_bx0kjdlvx7fhnrzn700000gn/T/dragonfly20160103-5790-17t6geb.JPG'
+D, [2016-01-03T01:09:49.462448 #5790] DEBUG -- : DRAGONFLY: shell command: 'identify' '-ping' '-format' '%m %w %h' '/var/folders/dr/0yjch_bx0kjdlvx7fhnrzn700000gn/T/dragonfly20160103-5790-17t6geb.JPG'
+D, [2016-01-03T01:12:45.324469 #5790] DEBUG -- : DRAGONFLY: shell command: 'identify' '-ping' '-format' '%m %w %h' '/var/folders/dr/0yjch_bx0kjdlvx7fhnrzn700000gn/T/RackMultipart20160103-5790-aftmqv.png'
+D, [2016-01-03T01:12:45.343143 #5790] DEBUG -- : DRAGONFLY: shell command: 'convert' '/var/folders/dr/0yjch_bx0kjdlvx7fhnrzn700000gn/T/RackMultipart20160103-5790-aftmqv.png' '-resize' '120x120^^' '-gravity' 'Center' '-crop' '120x120+0+0' '+repage' '/var/folders/dr/0yjch_bx0kjdlvx7fhnrzn700000gn/T/dragonfly20160103-5790-ijv5qm.png'
+D, [2016-01-03T01:12:45.387113 #5790] DEBUG -- : DRAGONFLY: shell command: 'identify' '-ping' '-format' '%m %w %h' '/var/folders/dr/0yjch_bx0kjdlvx7fhnrzn700000gn/T/dragonfly20160103-5790-ijv5qm.png'

@@ -12,5 +12,8 @@
 !/log/.keep
 /tmp
 
+# Paperdragon images
+/public/images
+
 *.swp
 *.swo

@@ -5,7 +5,11 @@ module Thing::Contract
     
     property :name
     property :description
+
     property :file, virtual: true
+    extend Paperdragon::Model::Writer
+    processable_writer :image
+    property :image_meta_data
 
     validates :name, presence: true
     validates :description, length: {in: 4..160}, allow_blank: true
