@@ -10,4 +10,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  get  "session/sign_up_form"
+  post "session/sign_up"
+  get  "session/sign_in_form"
+  post "session/sign_in"
+  get  "session/sign_out"
+
 end
