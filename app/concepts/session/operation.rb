@@ -19,6 +19,20 @@ module Session
         errors.add("password", "Password don't match")
       end
     end
+
+    def process(params)
+      validate(params[:user]) do
+        create!
+        contract.save
+      end
+    end
+
+    def create!(f)
+      auth = Tyrant::Authenticatable.new(contract.model)
+      auth.digest!(contract.password)
+      auth.confirmed!
+      auth.sync
+    end
   end
 end
 
