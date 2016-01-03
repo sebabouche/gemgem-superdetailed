@@ -22,4 +22,15 @@ module Thing::Callback
       CacheVersion.for("thing/cell/grid").expire!
     end
   end
+
+  class BeforeSave < Disposable::Callback::Group
+    on_change :upload_image!, property: :file
+
+    def upload_image!(thing, operation:, **)
+      operation.contract.image!(operation.contract.file) do |v|
+        v.process!(:original)
+        v.process!(:thumb) { |job| job.thumb("120x120#") }
+      end
+    end
+  end
 end
