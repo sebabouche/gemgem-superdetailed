@@ -29,7 +29,7 @@ module Thing::Callback
     def upload_image!(thing, operation:, **)
       operation.contract.image!(operation.contract.file) do |v|
         v.process!(:original)
-        v.process!(:thumb) { |job| job.thumb("120x120#") }
+        v.process!(:thumb) { |job| job.thumb!("120x120#") }
       end
     end
   end

@@ -84,6 +84,20 @@ class ThingOperationTest < MiniTest::Spec
       res.must_equal false
       op.errors.to_s.must_equal "{:\"users.user\"=>[\"This user has too many unconfirmed authorships.\"]}"
     end
+
+    # upload image
+    it "valid upload image" do
+      thing = Thing::Create.(thing: {name: Rails, file: File.open("test/images/cell.jpg")}).model
+
+      Paperdragon::Attachment.new(thing.image_meta_data).exists?.must_equal true
+    end
+
+    it "invalid file format" do
+      res, op = Thing::Create.run(thing: {name: Rails, file: File.open("test/images/hack.pdf")})
+
+      res.must_equal false
+      op.errors.to_s.must_equal "{:file=>[\"file should be one of image/jpeg, image/png\"]}"
+    end
   end
 
 
