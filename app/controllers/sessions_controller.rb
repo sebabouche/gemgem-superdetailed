@@ -30,5 +30,10 @@ class SessionsController < ApplicationController
     render action: :sign_up_form
   end
 
+  def sign_out
+    run Session::SignOut do
+      tyrant.sign_out!
+      redirect_to root_path
+    end
+  end
 end
-

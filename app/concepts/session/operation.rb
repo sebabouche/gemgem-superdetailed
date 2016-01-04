@@ -61,6 +61,11 @@ module Session
       end
     end
   end
+
+  class SignOut < Trailblazer::Operation
+    def process(params)
+    end
+  end
 end
 
 
