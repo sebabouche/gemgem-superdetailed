@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
     Tyrant::Session::new(request.env["warden"])
   end
   helper_method :tyrant
+
+  def process_params!(params)
+    params.merge!(current_user: tyrant.current_user)
+  end
 end

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :users
+
   get  "sessions/sign_up_form"
   post "sessions/sign_up"
   get  "sessions/sign_in_form"
