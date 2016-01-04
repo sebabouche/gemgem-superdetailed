@@ -16,7 +16,7 @@ module Session
       def password_ok?
         return unless email and password
         return if password == confirm_password
-        errors.add("password", "Password don't match")
+        errors.add("password", "Passwords don't match")
       end
     end
 

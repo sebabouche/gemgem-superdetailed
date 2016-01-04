@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  before_filter only: [:sign_in_form, :sign_in] do
+  before_filter only: [:sign_in_form, :sign_up_form] do
     redirect_to root_path if tyrant.signed_in? 
   end
 

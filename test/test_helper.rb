@@ -36,7 +36,7 @@ Trailblazer::Test::Integration.class_eval do
   end
 
   def sign_up!(email="fred@trb.org", password="123456")
-    Session::SignUp::Admin.(user: {email: email, password: password})
+    Session::SignUp.(user: {email: email, password: password, confirm_password: password})
   end
 
   def submit!(email, password)
