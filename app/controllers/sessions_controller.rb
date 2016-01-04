@@ -18,7 +18,12 @@ class SessionsController < ApplicationController
   end
 
   def sign_in
-    run Session::SignIn
+    run Session::SignIn do |op|
+      tyrant.sign_in!(op.model)
+      return redirect_to root_path
+    end
+
+    render action: :sign_in_form
   end
 end
 
