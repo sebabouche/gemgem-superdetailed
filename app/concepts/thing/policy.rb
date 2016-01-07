@@ -8,4 +8,12 @@ class Thing::Policy
   def create?
     true
   end
+
+  def signed_in?
+    user.present?
+  end
+
+  def admin?
+    signed_in? and user.email == "admin@trb.org"
+  end
 end

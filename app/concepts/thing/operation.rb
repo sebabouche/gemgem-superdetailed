@@ -3,6 +3,11 @@ class Thing < ActiveRecord::Base
     include Resolver
     policy Thing::Policy, :create?
 
+    builds -> (model, policy, params) do
+      return self::Admin if policy.admin?
+      return self::SignedIn if policy.signed_in?
+    end
+
     include Model
     model Thing, :create
 
