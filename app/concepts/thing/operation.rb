@@ -1,5 +1,8 @@
 class Thing < ActiveRecord::Base
   class Create < Trailblazer::Operation
+    include Resolver
+    policy Thing::Policy, :create?
+
     include Model
     model Thing, :create
 
