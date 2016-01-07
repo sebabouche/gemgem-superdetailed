@@ -7,7 +7,6 @@ Rails.application.routes.draw do
       post :create_comment
       get :next_comments
     end
-    resources :comments
   end
 
   resources :users
@@ -17,5 +16,7 @@ Rails.application.routes.draw do
   get  "sessions/sign_in_form"
   post "sessions/sign_in"
   get  "sessions/sign_out"
+  get  "sessions/wake_up_form/:id", controller: :sessions, action: :wake_up_form, as: :session_wake_up_form
+  post "sessions/wake_up/:id", controller: :sessions, action: :wake_up, as: :session_wake_up
 
 end

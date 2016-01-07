@@ -55,7 +55,7 @@ class Comment < ActiveRecord::Base
     end
 
     def sign_up_sleeping!(comment, *)
-      Tyrant::Authenticatable.new(comment.user.model)
+      auth = Tyrant::Authenticatable.new(comment.user.model)
       auth.confirmable!
       auth.sync
     end

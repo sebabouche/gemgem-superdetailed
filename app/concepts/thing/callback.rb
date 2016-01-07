@@ -37,9 +37,9 @@ module Thing::Callback
       end
     end
 
-    def sign_up_sleeping!
+    def sign_up_sleeping!(user, **)
       return if user.persisted?
-      Tyrant::Authenticatable.new(user.model)
+      auth = Tyrant::Authenticatable.new(user.model)
       auth.confirmable!
       auth.sync
     end
