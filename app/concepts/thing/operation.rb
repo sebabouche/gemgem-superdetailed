@@ -20,6 +20,12 @@ class Thing < ActiveRecord::Base
       end
     end
 
+    class SignedIn < self
+    end
+
+    class Admin < SignedIn
+    end
+
   end
 
   class Update < Create
