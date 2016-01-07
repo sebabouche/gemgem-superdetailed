@@ -88,4 +88,34 @@ class SessionIntegrationTest < Trailblazer::Test::Integration
     page.wont_have_content "Hi, fred@trb.org" # login success.
   end
 
+  # sleeping user activates account.
+  it do
+    user = Thing::Create.(thing: {name: "Taz", users: [{"email"=> "fred@taz.de"}]}).model.users[0]
+
+    token = Tyrant::Authenticatable.new(user).confirmation_token
+
+    visit "sessions/wake_up_form/#{user.id}/?confirmation_token=#{token}"
+
+    page.must_have_content "account, fred@taz.de!"
+    page.must_have_css "#user_password"
+    page.must_have_css "#user_confirm_password"
+
+    # valid.
+    fill_in "Password",        with: "123"
+    fill_in "Password, again", with: "123"
+    click_button("Engage")
+
+    page.must_have_content "Password changed." # flash.
+    user.reload
+    Tyrant::Authenticatable.new(user).confirmed?.must_equal true
+
+    page.current_path.must_equal "/sessions/sign_in_form"
+
+    # sign in.
+    fill_in "Email", with: "fred@taz.de"
+    fill_in "Password", with: "123"
+    click_button "Sign in!"
+
+    page.must_have_content "Hi, fred@taz.de"   # signed in.
+  end
 end
