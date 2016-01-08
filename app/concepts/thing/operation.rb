@@ -26,6 +26,7 @@ class Thing < ActiveRecord::Base
     end
 
     class SignedIn < self
+      include Thing::SignedIn
     end
 
     class Admin < SignedIn
