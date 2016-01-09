@@ -1,4 +1,4 @@
-class Thing::Cell < Cell::Concept
+class Thing::Cell < ::Cell::Concept
   property :name
   property :created_at
 

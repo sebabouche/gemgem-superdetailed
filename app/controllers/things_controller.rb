@@ -3,6 +3,8 @@ class ThingsController < ApplicationController
 
   def new
     form Thing::Create
+
+    render_form
   end
 
   def create
@@ -10,13 +12,13 @@ class ThingsController < ApplicationController
       return redirect_to op.model
     end
 
-    render action: :new
+    render_form
   end
 
   def edit
     form Thing::Update
 
-    render action: :new
+    render_form
   end
 
   def update
@@ -24,7 +26,7 @@ class ThingsController < ApplicationController
       return redirect_to op.model
     end
 
-    render action: :edit
+    render_form
   end
 
   def show
@@ -50,6 +52,12 @@ class ThingsController < ApplicationController
     present Thing::Update
 
     render js: concept("comment/cell/grid", @model, page: params[:page]).(:append)
+  end
+
+  private
+
+  def render_form
+    render text: concept("thing/cell/form", @operation), layout: true
   end
 
 end

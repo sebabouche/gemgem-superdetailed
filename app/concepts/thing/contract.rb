@@ -23,6 +23,10 @@ module Thing::Contract
       validates :email, presence: true, email: true
       validate :authorship_limit_reached?
 
+      def removeable?
+        model.persisted?
+      end
+
       private
 
       def authorship_limit_reached?
@@ -48,10 +52,6 @@ module Thing::Contract
 
     collection :users, inherit: true, populator: :user! do
       property :remove, virtual: true
-
-      def removeable?
-        model.persisted?
-      end
     end
 
     private

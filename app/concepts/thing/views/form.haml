@@ -1,13 +1,15 @@
-
 %h3 What do you want to talk about?
 
-= simple_form_for @form do |f|
-  = f.input :name, placeholder: "Name", label: false, readonly: @form.readonly?(:name)
+= simple_form_for contract, html: {class: css_class} do |f|
+  = f.input :name, placeholder: "Name", label: false, readonly: contract.readonly?(:name)
   = f.input :description, placeholder: "Description", label: false
   = f.input :file, as: :file
 
   %fieldset
     %legend Do you know any authors?
+
+    - if signed_in?
+      = f.input :is_author, as: :boolean, label: "I'm the author!"
     = f.simple_fields_for :users do |u|
       - if @operation.instance_of? Thing::Create
         = u.input :email, placeholder: "Email", label: false
@@ -19,4 +21,4 @@
 
   = f.button :submit, class: :expand
 
-= @form.errors.messages
+= contract.errors.messages
