@@ -35,7 +35,9 @@ class Thing < ActiveRecord::Base
   end
 
   class Update < Create
+    self.builder_class = Create.builder_class
     action :update
+    policy Thing::Policy, :update?
 
     contract Contract::Update
   end

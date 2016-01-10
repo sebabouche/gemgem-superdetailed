@@ -16,4 +16,12 @@ class Thing::Policy
   def admin?
     signed_in? and user.email == "admin@trb.org"
   end
+
+  def update?
+    edit?
+  end
+
+  def edit?
+    signed_in? and (admin? or model.users.include?(user))
+  end
 end
