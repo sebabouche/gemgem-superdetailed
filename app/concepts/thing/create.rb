@@ -2,13 +2,12 @@ class Thing < ActiveRecord::Base
   class Create < Trailblazer::Operation
     include Resolver
     policy Thing::Policy, :create?
+    model Thing, :create
 
     builds -> (model, policy, params) do
       return self::Admin if policy.admin?
       return self::SignedIn if policy.signed_in?
     end
-
-    model Thing, :create
 
     contract Contract::Create
     

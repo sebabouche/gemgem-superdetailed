@@ -8,8 +8,9 @@
   %fieldset
     %legend Do you know any authors?
 
-    - if signed_in?
-      = f.input :is_author, as: :boolean, label: "I'm the author!"
+    - if has_author_field?
+      = f.input :is_author
+      /, as: :boolean, label: "I'm the author!"
     = f.simple_fields_for :users do |u|
       - if @operation.instance_of? Thing::Create
         = u.input :email, placeholder: "Email", label: false

@@ -23,5 +23,9 @@ class Thing::Cell::Form < Cell::Concept
   def admin?
     model.policy.admin?
   end
+
+  def has_author_field?
+    contract.options_for(:is_author)
+  end
 end
 
