@@ -24,4 +24,12 @@ class Thing::Policy
   def edit?
     signed_in? and (admin? or model.users.include?(user))
   end
+
+  def show?
+    return true
+  end
+
+  def delete?
+    return false
+  end
 end
